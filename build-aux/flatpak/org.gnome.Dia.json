@@ -1,0 +1,41 @@
+{
+    "app-id": "org.gnome.Dia",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "master",
+    "sdk": "org.gnome.Sdk",
+    "command": "dia",
+    "finish-args": [
+        "--filesystem=home",
+        "--device=dri",
+        "--share=ipc",
+        "--socket=x11"
+    ],
+    "cleanup": [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "/share/vala",
+        "*.la",
+        "*.a"
+    ],
+    "modules": [
+        "shared-modules/gtk2/gtk2.json",
+        {
+            "name": "dia",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dtests=false"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/dia.git"
+                }
+            ]
+        }
+    ]
+}
